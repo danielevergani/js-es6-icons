@@ -130,19 +130,69 @@ const icons = [
 // $(".icons").append(iconTemplate);
 
 
-icons.forEach((element) => {
+/*icons.forEach((element) => {
 
   const iconTemplate = $(".template .icona").clone();
 
-  console.log(iconTemplate);
+  var {name, family, prefix, color} = element;
 
-  var {name, family, prefix} = element;
+  iconTemplate.find("i").removeClass().addClass(`${family} ${prefix}${name} ${color}`);
+  iconTemplate.find(".title").text(`${name}`);
 
-  iconTemplate.find("i").removeClass().addClass(`${family} ${prefix}${name}`);
+  $(".icons").append(iconTemplate);
+
+});*/
+
+
+
+// Milestone 2
+// Coloriamo le icone per tipo
+
+const color = [
+  {
+    category: "food",
+    color: "yellow"
+  },
+  {
+    category: "animal",
+    color: "green"
+  },
+  {
+    category: "beverage",
+    color: "red"
+  }
+];
+
+
+const coloredIcon = icons.map((element) => {
+
+  var coloreIcona;
+
+  color.forEach((item) =>{
+
+    if ( item.category == element.category ) {
+      coloreIcona = item.color;
+    }
+
+  });
+
+  element.color = coloreIcona;
+
+  return element
+
+});
+
+console.log(coloredIcon);
+
+coloredIcon.forEach((element) => {
+
+  const iconTemplate = $(".template .icona").clone();
+
+  var {name, family, prefix, color} = element;
+
+  iconTemplate.find("i").removeClass().addClass(`${family} ${prefix}${name} ${color}`);
   iconTemplate.find(".title").text(`${name}`);
 
   $(".icons").append(iconTemplate);
 
 });
-
-
