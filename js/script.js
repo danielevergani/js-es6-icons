@@ -132,11 +132,13 @@ const icons = [
 
 icons.forEach((element) => {
 
-  const iconTemplate = $(".icona");
+  const iconTemplate = $(".template .icona").clone();
+
+  console.log(iconTemplate);
 
   var {name, family, prefix} = element;
 
-  iconTemplate.find("i").remoaddClass(`${family} ${prefix}${name}`);
+  iconTemplate.find("i").removeClass().addClass(`${family} ${prefix}${name}`);
   iconTemplate.find(".title").text(`${name}`);
 
   $(".icons").append(iconTemplate);
