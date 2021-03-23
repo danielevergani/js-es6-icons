@@ -188,6 +188,9 @@ coloredIcon.forEach((element) => {
 
 });
 
+// Milestone 3
+// Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+
 const categorie = [];
 
 coloredIcon.forEach((element) => {
@@ -200,9 +203,13 @@ coloredIcon.forEach((element) => {
 
 });
 
+// innietto i nomi delle categorie nella select
+
 for ( let i = 0; i<categorie.length; i++){
   $("select").append(`<option value="${categorie[i]}">${categorie[i]}</option>`);
 }
+
+// stampo a schermo icone a seconda del value della select
 
 $("select").change(function() {
 
@@ -218,18 +225,13 @@ $("select").change(function() {
 
   filteredColIcons.forEach((element) => {
     
-    const iconTemplate = $(".template .icona").clone();
+    insElem(element);
 
-    var {name, family, prefix, color} = element;
-
-    iconTemplate.find("i").removeClass().addClass(`${family} ${prefix}${name} ${color}`);
-    iconTemplate.find(".title").text(`${name}`);
-
-    $(".icons").append(iconTemplate);
   });
 
-  
 });
+
+// FUNZIONE
 
 function insElem (item){
   const iconTemplate = $(".template .icona").clone();
