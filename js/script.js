@@ -117,3 +117,30 @@ const icons = [
     category: "animal"
   },
 ];
+
+
+// Milestone 1
+// Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
+
+// var iconTemplate = $(".icona");
+
+// iconTemplate.find("i").addClass("fas fa-cat");
+// iconTemplate.find(".title").text("CAT");
+
+// $(".icons").append(iconTemplate);
+
+
+icons.forEach((element) => {
+
+  const iconTemplate = $(".icona");
+
+  var {name, family, prefix} = element;
+
+  iconTemplate.find("i").remoaddClass(`${family} ${prefix}${name}`);
+  iconTemplate.find(".title").text(`${name}`);
+
+  $(".icons").append(iconTemplate);
+
+});
+
+
