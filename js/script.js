@@ -182,17 +182,62 @@ const coloredIcon = icons.map((element) => {
 
 });
 
-console.log(coloredIcon);
+coloredIcon.forEach((element) => {
+
+  insElem(element);
+
+});
+
+const categorie = [];
 
 coloredIcon.forEach((element) => {
 
+  if (categorie.includes(element.category) == false ){
+    categorie.push(element.category);
+  }
+
+  return categorie;
+
+});
+
+for ( let i = 0; i<categorie.length; i++){
+  $("select").append(`<option value="${categorie[i]}">${categorie[i]}</option>`);
+}
+
+$("select").change(function() {
+
+  let filteredColIcons = coloredIcon.filter((item) =>{
+    return item.category == $(this).val()
+  });
+
+  if (filteredColIcons.length == 0){
+    filteredColIcons = coloredIcon;
+  }
+
+  $(".icons").html("");
+
+  filteredColIcons.forEach((element) => {
+    
+    const iconTemplate = $(".template .icona").clone();
+
+    var {name, family, prefix, color} = element;
+
+    iconTemplate.find("i").removeClass().addClass(`${family} ${prefix}${name} ${color}`);
+    iconTemplate.find(".title").text(`${name}`);
+
+    $(".icons").append(iconTemplate);
+  });
+
+  
+});
+
+function insElem (item){
   const iconTemplate = $(".template .icona").clone();
 
-  var {name, family, prefix, color} = element;
+  var {name, family, prefix, color} = item;
 
   iconTemplate.find("i").removeClass().addClass(`${family} ${prefix}${name} ${color}`);
   iconTemplate.find(".title").text(`${name}`);
 
   $(".icons").append(iconTemplate);
-
-});
+}
